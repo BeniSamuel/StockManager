@@ -21,4 +21,13 @@ public class DatabaseConnection {
         return conn;
     }
 
+    public boolean isConnected () {
+        try {
+            return conn == null || conn.isClosed();
+        }
+        catch ( SQLException e ) {
+            return true;
+        }
+    }
+
 }
