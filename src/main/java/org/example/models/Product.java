@@ -1,38 +1,30 @@
 package org.example.models;
 
 public class Product {
-    private int productId = 0;
-    private String productName;
-    private Double productPrice;
+    private int id;
+    private String name;
+    private String description;
+    private double price;
 
-    public Product ( String productName, Double productPrice ) {
-        this.productId += 1;
-        this.productName = productName;
-        this.productPrice = productPrice;
+    public Product() {}
+
+    public Product(int id, String name, String description, double price) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.price = price;
     }
 
-    public int getProductId() {
-        return productId;
-    }
+    // Getters and Setters
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
 
-    public Double getProductPrice() {
-        return productPrice;
-    }
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
 
-    public String getProductName() {
-        return productName;
-    }
+    public String getDescription() { return description; }
+    public void setDescription(String description) { this.description = description; }
 
-    public void setProductId(int productId) {
-        this.productId = productId;
-    }
-
-    public void setProductName(String productName) {
-        this.productName = productName;
-    }
-
-    public void setProductPrice(Double productPrice) {
-        this.productPrice = productPrice;
-    }
-
+    public double getPrice() { return price; }
+    public void setPrice(double price) { this.price = price; }
 }
