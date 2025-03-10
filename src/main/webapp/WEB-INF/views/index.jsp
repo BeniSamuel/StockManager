@@ -37,23 +37,70 @@
             justify-content: center;
             gap: 12px;
         }
+        .language-selector {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 16px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
+<div class="language-selector" id="languageSelector">
+    <button class="btn btn-link" onclick="changeLanguage('en')">EN</button>
+    <button class="btn btn-link" onclick="changeLanguage('rw')">RW</button>
+</div>
 <div class="login-container">
-    <h2 class="text-center mb-4">Login</h2>
+    <h2 class="text-center mb-4" id="loginHeader">Login</h2>
     <form action="login" method="get">
         <div class="mb-3">
-            <label for="email" class="form-label">Email</label>
+            <label for="email" class="form-label" id="emailLabel">Email</label>
             <input type="email" id="email" class="form-control" placeholder="Enter your email" required name="email">
         </div>
         <div class="mb-3">
-            <label for="password" class="form-label">Password</label>
+            <label for="password" class="form-label" id="passwordLabel">Password</label>
             <input type="password" id="password" class="form-control" placeholder="Enter your password" required name="password">
         </div>
-        <button type="submit" class="btn btn-primary w-100">Login</button>
-        <p class="new_to_site">New to site? <span><a href="signup">Signup</a></span></p>
+        <button type="submit" class="btn btn-primary w-100" id="loginButton">Login</button>
+        <p class="new_to_site" id="newToSiteText">New to site? <span><a href="signup">Signup</a></span></p>
     </form>
 </div>
+
+<script>
+    function changeLanguage(lang) {
+        const elements = {
+            'loginHeader': {
+                'en': 'Login',
+                'rw': 'Injira'
+            },
+            'emailLabel': {
+                'en': 'Email',
+                'rw': 'Imeyili'
+            },
+            'passwordLabel': {
+                'en': 'Password',
+                'rw': 'Ijambo ry’ibanga'
+            },
+            'loginButton': {
+                'en': 'Login',
+                'rw': 'Injira'
+            },
+            'newToSiteText': {
+                'en': 'New to site?',
+                'rw': 'Mushya ku rubuga?'
+            }
+        };
+
+        // Update all relevant elements based on selected language
+        for (const [key, value] of Object.entries(elements)) {
+            document.getElementById(key).textContent = value[lang];
+        }
+
+        // Update placeholders
+        document.getElementById('email').placeholder = lang === 'en' ? 'Enter your email' : 'Injiza imeyili yawe';
+        document.getElementById('password').placeholder = lang === 'en' ? 'Enter your password' : 'Injiza ijambo ry’ibanga ryawe';
+    }
+</script>
 </body>
 </html>
