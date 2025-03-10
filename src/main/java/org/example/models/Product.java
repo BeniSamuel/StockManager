@@ -1,7 +1,7 @@
 package org.example.models;
 
 public class Product {
-    private int id;
+    private int id = 0;
     private String name;
     private String description;
     private double price;
@@ -10,6 +10,13 @@ public class Product {
 
     public Product(int id, String name, String description, double price) {
         this.id = id;
+        this.name = name;
+        this.description = description;
+        this.price = price;
+    }
+
+    public Product ( String name, String description, double price ) {
+        this.id += 1;
         this.name = name;
         this.description = description;
         this.price = price;

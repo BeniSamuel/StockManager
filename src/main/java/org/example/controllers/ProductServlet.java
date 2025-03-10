@@ -23,10 +23,17 @@ public class ProductServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Product> products = productService.getAllProducts();
-        request.setAttribute("products", products);
-        request.getRequestDispatcher("/WEB-INF/views/dashboard.jsp").forward(request, response);
+        String action = request.getParameter("action");
+
+        if ("delete".equals(action)) {
+            deleteProduct(request, response);
+        } else {
+            List<Product> products = productService.getAllProducts();
+            request.setAttribute("products", products);
+            request.getRequestDispatcher("/WEB-INF/views/dashboard.jsp").forward(request, response);
+        }
     }
+
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -47,7 +54,7 @@ public class ProductServlet extends HttpServlet {
         String description = request.getParameter("description");
         double price = Double.parseDouble(request.getParameter("price"));
 
-        Product product = new Product( id,name, description, price );
+        Product product = new Product( name, description, price );
         productService.addProduct(product);
 
         response.sendRedirect("products");
